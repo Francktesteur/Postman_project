@@ -1,0 +1,356 @@
+{
+	"info": {
+		"_postman_id": "637e3aa5-fff9-4edf-a2f4-f07c1a808e0e",
+		"name": "Simple_Book_Api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "42972104"
+	},
+	"item": [
+		{
+			"name": "01_Etat de l'API",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://simple-books-api.glitch.me/status",
+					"protocol": "https",
+					"host": [
+						"simple-books-api",
+						"glitch",
+						"me"
+					],
+					"path": [
+						"status"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "04_Variables",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{Base_URL}}/{{EP_Status}}",
+					"host": [
+						"{{Base_URL}}"
+					],
+					"path": [
+						"{{EP_Status}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "05.1_Query Params",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{Base_URL}}/books/:bookld",
+					"host": [
+						"{{Base_URL}}"
+					],
+					"path": [
+						"books",
+						":bookld"
+					],
+					"query": [
+						{
+							"key": "type",
+							"value": "non-fiction",
+							"disabled": true
+						}
+					],
+					"variable": [
+						{
+							"key": "bookld",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "05.2_Path_Params",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{Base_URL}}/books/:bookid",
+					"host": [
+						"{{Base_URL}}"
+					],
+					"path": [
+						"books",
+						":bookid"
+					],
+					"variable": [
+						{
+							"key": "bookid",
+							"value": "6"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "06.1_Authentification",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"clientName\": \"Franck\",\r\n   \"clientEmail\": \"Franck@example.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{Base_URL}}/api-clients",
+					"host": [
+						"{{Base_URL}}"
+					],
+					"path": [
+						"api-clients"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "06.2_Post_& Random",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"bookId\": 1,\r\n  \"customerName\": \"{{$randomFirstName}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{Base_URL}}/orders",
+					"host": [
+						"{{Base_URL}}"
+					],
+					"path": [
+						"orders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "06.3_Get_All_Orders",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{Base_URL}}/orders",
+					"host": [
+						"{{Base_URL}}"
+					],
+					"path": [
+						"orders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "07_Update",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"customerName\": \"{{$randomFirstName}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{Base_URL}}/orders/:orderid",
+					"host": [
+						"{{Base_URL}}"
+					],
+					"path": [
+						"orders",
+						":orderid"
+					],
+					"variable": [
+						{
+							"key": "orderid",
+							"value": "eJBixQ75GucH4kmhsH7sy"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "08_Delete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{Base_URL}}/orders/:orderid",
+					"host": [
+						"{{Base_URL}}"
+					],
+					"path": [
+						"orders",
+						":orderid"
+					],
+					"variable": [
+						{
+							"key": "orderid",
+							"value": "eJBixQ75GucH4kmhsH7sy"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "09.1_Test_Statutss_via_JS",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{Base_URL}}/{{EP_Status}}/error",
+					"host": [
+						"{{Base_URL}}"
+					],
+					"path": [
+						"{{EP_Status}}",
+						"error"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "09.2Post_&_Random_JS",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"    var jsonData = pm.response.json()\r",
+							"    pm.variables.set(\"ma_commande\", \"variable_value\");\r",
+							"    \r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"bookId\": 1,\r\n  \"customerName\": \"{{$randomFirstName}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{Base_URL}}/orders",
+					"host": [
+						"{{Base_URL}}"
+					],
+					"path": [
+						"orders"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "7e64212ba2b85959d823cfd75f4ef1e4347ea289ad988403af374392a1b107ab",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "Base_URL",
+			"value": "https://simple-books-api.glitch.me",
+			"type": "string"
+		},
+		{
+			"key": "EP_Status",
+			"value": "status",
+			"type": "string"
+		}
+	]
+}
